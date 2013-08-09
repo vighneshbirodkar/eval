@@ -11,7 +11,7 @@ NUM_RANGE = 15
 MAX_MINUTES = 10
 QUEST_RANGE = 4
 
-open("data.txt",'a').close()
+open("data.tdf",'a').close()
 class App(object):
 
     def __init__(self):
@@ -103,7 +103,7 @@ class App(object):
         self.entry.set_text('')
         
     def nextClick(self,data=None):
-        self.entry.set_text('-1')
+        self.entry.set_text('0')
         self.answerClick()
         self.entry.set_text('')
     def answerClick(self,data=None):
@@ -127,7 +127,7 @@ class App(object):
              md.destroy()
     def finish(self):
         text = "%d out of %d answers correct on %s" % (self.rightAns,self.attempts,datetime.datetime.now().strftime("%d/%m/%y %H:%M"))
-        fileObj = open("data.txt",'a')
+        fileObj = open("data.tdf",'a')
         fileObj.write(base64.b64encode(text ) + '\n')
         fileObj.close()
         
@@ -145,7 +145,7 @@ class App(object):
         self.seconds = 0
     def statsShow(self,data=None):
     
-        f = open("data.txt")
+        f = open("data.tdf")
         lines = '\n'.join([base64.b64decode(line) for line in f.readlines()])
         f.close()
         self.textView.get_buffer().set_text(lines)
